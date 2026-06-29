@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coroinhas — Guia Litúrgico</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --burgundy: #7F1734;
+    --burgundy-dark: #5C1027;
+    --burgundy-light: #A83050;
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --cream: #FAF6F0;
+    --cream-dark: #F0E8DC;
+    --stone: #6B5D52;
+    --stone-light: #9E8E83;
+    --ink: #1C1410;
+    --white: #FFFFFF;
+    --shadow: rgba(28, 20, 16, 0.12);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.7;
+  }
+
+  /* ── NAVBAR ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--burgundy-dark);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    height: 60px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+  }
+  .nav-logo {
+    font-family: 'Cinzel', serif;
+    color: var(--gold);
+    font-size: 15px;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex;
+    gap: 6px;
+    list-style: none;
+  }
+  .nav-links a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: all 0.2s;
+  }
+  .nav-links a:hover {
+    color: var(--gold-light);
+    background: rgba(201,168,76,0.12);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--burgundy-dark);
+    background-image:
+      radial-gradient(ellipse at 20% 50%, rgba(127,23,52,0.6) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(201,168,76,0.1) 0%, transparent 50%);
+    color: var(--white);
+    text-align: center;
+    padding: 5rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '✝';
+    position: absolute;
+    font-size: 320px;
+    color: rgba(201,168,76,0.04);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    font-family: serif;
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .hero h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+  .hero-sub {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.65);
+    max-width: 480px;
+    margin: 0 auto 2.5rem;
+    font-weight: 300;
+  }
+  .hero-badges {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .hero-badge {
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.35);
+    color: var(--gold-light);
+    font-size: 12px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 4rem 2rem;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .section-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-eyebrow::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.3;
+    max-width: 60px;
+  }
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 600;
+    color: var(--burgundy-dark);
+    margin-bottom: 0.4rem;
+  }
+  .section-desc {
+    color: var(--stone);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+    max-width: 560px;
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid var(--cream-dark);
+    margin: 0;
+  }
+
+  /* ── CORES LITÚRGICAS ── */
+  #cores { background: var(--cream); }
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+  }
+  .color-card {
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px var(--shadow);
+    display: flex;
+    flex-direction: column;
+  }
+  .color-swatch {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+  }
+  .color-body {
+    padding: 1rem 1.1rem 1.2rem;
+  }
+  .color-name {
+    font-family: 'Cinzel', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .color-meaning {
+    font-size: 13px;
+    color: var(--stone);
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+  .color-feasts {
+    font-size: 11.5px;
+    color: var(--stone-light);
+    border-top: 1px solid var(--cream-dark);
+    padding-top: 8px;
+    line-height: 1.6;
+  }
+  .color-feasts strong { color: var(--stone); }
+
+  /* ── TEMPOS LITÚRGICOS ── */
+  #tempos { background: var(--cream-dark); }
+  .timeline {
+    position: relative;
+    padding-left: 32px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--gold), var(--burgundy), var(--gold));
+    opacity: 0.3;
+  }
+  .timeline-item {
+    position: relative;
+    background: var(--white);
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    margin-bottom: 14px;
+    box-shadow: 0 2px 8px var(--shadow);
+    border-left: 4px solid;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -28px;
+    top: 20px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 2px solid;
+    border-color: inherit;
+  }
+  .timeline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .timeline-name {
+    font-family: 'Cinzel', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .timeline-dates {
+    font-size: 11.5px;
+    color: var(--stone-light);
+    white-space: nowrap;
+    padding: 3px 10px;
+    background: var(--cream);
+    border-radius: 20px;
+    border: 1px solid var(--cream-dark);
+  }
+  .timeline-desc {
+    font-size: 13.5px;
+    color: var(--stone);
+    margin-top: 6px;
+    line-height: 1.6;
+  }
+  .color-tag {
+    display: inline-block;
+    font-size: 11px;
+    padding: 2px 9px;
+    border-radius: 20px;
+    margin-top: 8px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── LIVROS DO ALTAR ── */
+  #livros { background: var(--cream); }
+  .book-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .book-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 1.3rem 1.4rem;
+    box-shadow: 0 2px 10px var(--shadow);
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .book-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    background: var(--burgundy-dark);
+    color: var(--gold);
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .book-content { flex: 1; }
+  .book-name {
+    font-family: 'Cinzel', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+  .book-latin {
+    font-size: 11px;
+    color: var(--stone-light);
+    font-style: italic;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .book-desc {
+    font-size: 13.5px;
+    color: var(--stone);
+    line-height: 1.6;
+    margin-bottom: 6px;
+  }
+  .book-tip {
+    font-size: 12px;
+    color: var(--burgundy);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── MISSAS ── */
+  #missas { background: var(--cream-dark); }
+  .mass-week {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px;
+    margin-bottom: 2rem;
+  }
+  .mass-day-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 1.4rem 1rem;
+    text-align: center;
+    box-shadow: 0 2px 10px var(--shadow);
+    border-top: 4px solid var(--cream-dark);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .mass-day-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px var(--shadow);
+  }
+  .mass-day-card.featured {
+    border-top-color: var(--gold);
+  }
+  .mass-day-name {
+    font-family: 'Cinzel', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--burgundy-dark);
+    margin-bottom: 6px;
+  }
+  .mass-day-label {
+    font-size: 11px;
+    color: var(--stone-light);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .mass-day-icon {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+  .mass-day-card.featured .mass-day-name { color: var(--burgundy-dark); }
+  .mass-day-card.featured .mass-day-label { color: var(--gold); font-weight: 700; }
+
+  .duties-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 12px;
+  }
+  .duty-card {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 1rem 1.1rem;
+    box-shadow: 0 2px 8px var(--shadow);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .duty-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--burgundy-dark);
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .duty-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+  .duty-desc { font-size: 12.5px; color: var(--stone); line-height: 1.5; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--burgundy-dark);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 2rem;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+  }
+  footer span { color: var(--gold); }
+
+  /* ── TIP BOX ── */
+  .tip {
+    background: #FFF9F0;
+    border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    padding: 0.9rem 1.1rem;
+    margin-top: 1.5rem;
+    font-size: 13px;
+    color: var(--stone);
+    line-height: 1.6;
+  }
+  .tip strong { color: var(--burgundy-dark); }
+
+  @media (max-width: 600px) {
+    nav { padding: 0 1rem; }
+    .nav-links { display: none; }
+    section { padding: 3rem 1.2rem; }
+    .hero { padding: 3.5rem 1.2rem 3rem; }
+    .timeline { padding-left: 24px; }
+    .timeline-item::before { left: -20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <a class="nav-logo" href="#">✝ Coroinhas</a>
+  <ul class="nav-links">
+    <li><a href="#cores">Cores</a></li>
+    <li><a href="#tempos">Tempos</a></li>
+    <li><a href="#livros">Livros</a></li>
+    <li><a href="#missas">Missas</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-eyebrow">Guia Litúrgico</p>
+  <h1>Servidores<br>do Altar</h1>
+  <p class="hero-sub">Tudo o que um coroinha precisa saber: cores, tempos, livros e escala de missas.</p>
+  <div class="hero-badges">
+    <span class="hero-badge">🎨 Cores litúrgicas</span>
+    <span class="hero-badge">📅 Tempos do ano</span>
+    <span class="hero-badge">📖 Livros do altar</span>
+    <span class="hero-badge">🕯️ Dias de missa</span>
+  </div>
+</div>
+
+<!-- ══════════════════ CORES ══════════════════ -->
+<hr class="divider">
+<section id="cores">
+  <p class="section-eyebrow">Cores liturgicas</p>
+  <h2 class="section-title">As cores da liturgia</h2>
+  <p class="section-desc">Cada cor expressa um sentido diferente e indica o tempo ou a festa celebrada. Observe sempre a casula do padre.</p>
+
+  <div class="color-grid">
+
+    <div class="color-card">
+      <div class="color-swatch" style="background:#6B2DA4;">🟣</div>
+      <div class="color-body">
+        <div class="color-name">Roxo / Violeta</div>
+        <div class="color-meaning">Penitência, espera e conversão.</div>
+        <div class="color-feasts"><strong>Quando:</strong> Advento · Quaresma · Missas de finados (opção)</div>
+      </div>
+    </div>
+
+    <div class="color-card">
+      <div class="color-swatch" style="background:#8B1A1A;">🔴</div>
+      <div class="color-body">
+        <div class="color-name">Vermelho</div>
+        <div class="color-meaning">Sangue de Cristo, fogo do Espírito Santo e martírio.</div>
+        <div class="color-feasts"><strong>Quando:</strong> Domingo de Ramos · Sexta-feira Santa · Pentecostes · festas de mártires</div>
+      </div>
+    </div>
+
+    <div class="color-card">
+      <div class="color-swatch" style="background:#C9A84C;">⚪</div>
+      <div class="color-body">
+        <div class="color-name">Branco / Dourado</div>
+        <div class="color-meaning">Alegria, pureza e glória de Deus.</div>
+        <div class="color-feasts"><strong>Quando:</strong> Natal · Páscoa · Corpus Christi · festas de santos não mártires · Nossa Senhora</div>
+      </div>
+    </div>
+
+    <div class="color-card">
+      <div class="color-swatch" style="background:#2E7D32;">🟢</div>
+      <div class="color-body">
+        <div class="color-name">Verde</div>
+        <div class="color-meaning">Esperança e crescimento na vida cristã.</div>
+        <div class="color-feasts"><strong>Quando:</strong> Tempo Comum (domingos e dias fora dos tempos fortes)</div>
+      </div>
+    </div>
+
+    <div class="color-card">
+      <div class="color-swatch" style="background:#C2185B;">🩷</div>
+      <div class="color-body">
+        <div class="color-name">Rosa</div>
+        <div class="color-meaning">Alegria no meio da penitência — uso raro e especial.</div>
+        <div class="color-feasts"><strong>Quando:</strong> 3º domingo do Advento (Gaudete) · 4º domingo da Quaresma (Laetare)</div>
+      </div>
+    </div>
+
+    <div class="color-card">
+      <div class="color-swatch" style="background:#212121; border-bottom: 1px solid #444;">⚫</div>
+      <div class="color-body">
+        <div class="color-name">Preto</div>
+        <div class="color-meaning">Luto — uso tradicional, hoje substituído pelo roxo.</div>
+        <div class="color-feasts"><strong>Quando:</strong> Missas de exéquias (funerais) — uso opcional</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="tip">
+    <strong>Dica para o coroinha:</strong> Sempre confira a cor da casula do padre antes de entrar na sacristia. Ela indica o tempo litúrgico do dia e te ajuda a entender o clima de cada celebração.
+  </div>
+</section>
+
+<!-- ══════════════════ TEMPOS ══════════════════ -->
+<hr class="divider">
+<section id="tempos">
+  <p class="section-eyebrow">Calendário litúrgico</p>
+  <h2 class="section-title">Os tempos do ano</h2>
+  <p class="section-desc">O ano litúrgico começa no 1.º domingo do Advento e percorre grandes etapas. Datas de 2025–2026.</p>
+
+  <div class="timeline">
+
+    <div class="timeline-item" style="border-left-color:#6B2DA4;">
+      <div class="timeline-header">
+        <span class="timeline-name">🕯️ Advento</span>
+        <span class="timeline-dates">30 nov – 24 dez 2025</span>
+      </div>
+      <p class="timeline-desc">Quatro semanas de preparação para o Natal. Tempo de espera, oração e penitência. No 3.º domingo (Gaudete) a cor muda para rosa, celebrando a alegria que se aproxima.</p>
+      <span class="color-tag" style="background:#EDE0F7; color:#5B1FA3;">● Roxo (rosa no 3.º domingo)</span>
+    </div>
+
+    <div class="timeline-item" style="border-left-color:#C9A84C;">
+      <div class="timeline-header">
+        <span class="timeline-name">⭐ Natal</span>
+        <span class="timeline-dates">25 dez 2025 – 12 jan 2026</span>
+      </div>
+      <p class="timeline-desc">Celebração do nascimento de Jesus. Começa na Véspera de Natal (24/12 à noite) e termina na festa do Batismo do Senhor. Inclui o dia de Ano Novo, que é a solenidade de Maria Santíssima.</p>
+      <span class="color-tag" style="background:#FDF3DC; color:#8B6914;">● Branco / Dourado</span>
+    </div>
+
+    <div class="timeline-item" style="border-left-color:#2E7D32;">
+      <div class="timeline-header">
+        <span class="timeline-name">🌿 Tempo Comum I</span>
+        <span class="timeline-dates">13 jan – 17 fev 2026</span>
+      </div>
+      <p class="timeline-desc">Semanas entre o Natal e a Quaresma. Acompanhamos a vida pública de Jesus: batismo, chamada dos apóstolos e primeiros milagres.</p>
+      <span class="color-tag" style="background:#E8F5E9; color:#1B5E20;">● Verde</span>
+    </div>
+
+    <div class="timeline-item" style="border-left-color:#6B2DA4;">
+      <div class="timeline-header">
+        <span class="timeline-name">✝️ Quaresma</span>
+        <span class="timeline-dates">18 fev – 4 abr 2026</span>
+      </div>
+      <p class="timeline-desc">40 dias de penitência e conversão antes da Páscoa. Começa na Quarta-Feira de Cinzas. O Glória e o Aleluia não são cantados neste período. No 4.º domingo (Laetare) usa-se a cor rosa.</p>
+      <span class="color-tag" style="background:#EDE0F7; color:#5B1FA3;">● Roxo (rosa no 4.º domingo)</span>
+    </div>
+
+    <div class="timeline-item" style="border-left-color:#8B1A1A;">
+      <div class="timeline-header">
+        <span class="timeline-name">🌿 Semana Santa</span>
+        <span class="timeline-dates">29 mar – 4 abr 2026</span>
+      </div>
+      <p class="timeline-desc"><strong>Domingo de Ramos</strong> (vermelho) → <strong>Quinta-feira da Ceia</strong> (branco) → <strong>Sexta-feira Santa</strong> (vermelho, sem missa) → <strong>Sábado Santo</strong> (sem cor, até a Vigília Pascual em branco). Semana mais importante do ano litúrgico.</p>
+      <span class="color-tag" style="background:#FDECEA; color:#7B1111;">● Vermelho / Branco (varia por dia)</span>
+    </div>
+
+    <div class="timeline-item" style="border-left-color:#C9A84C;">
+      <div class="timeline-header">
+        <span class="timeline-name">🐣 Páscoa</span>
+        <span class="timeline-dates">5 abr – 24 mai 2026</span>
+      </div>
+      <p class="timeline-desc">Cinquenta dias de alegria celebrando a ressurreição de Jesus. O período mais festivo do ano. Termina em Pentecostes, quando a cor muda para vermelho em honra ao Espírito Santo.</p>
+      <span class="color-tag" style="background:#FDF3DC; color:#8B6914;">● Branco / Dourado (vermelho em Pentecostes)</span>
+    </div>
+
+    <div class="timeline-item" style="border-left-color:#2E7D32;">
+      <div class="timeline-header">
+        <span class="timeline-name">🌿 Tempo Comum II</span>
+        <span class="timeline-dates">25 mai – 28 nov 2026</span>
+      </div>
+      <p class="timeline-desc">O período mais longo do ano — cerca de 27 semanas. Acompanhamos os ensinamentos e obras de Jesus nos Evangelhos. Cada domingo tem seu próprio tema e leituras.</p>
+      <span class="color-tag" style="background:#E8F5E9; color:#1B5E20;">● Verde</span>
+    </div>
+
+  </div>
+
+  <div class="tip">
+    <strong>Atenção:</strong> A Páscoa de 2026 cai em <strong>5 de abril</strong>. Como as datas da Quaresma e da Páscoa mudam todo ano, sempre consulte o calendário da paróquia.
+  </div>
+</section>
+
+<!-- ══════════════════ LIVROS ══════════════════ -->
+<hr class="divider">
+<section id="livros">
+  <p class="section-eyebrow">Altar</p>
+  <h2 class="section-title">Livros do altar</h2>
+  <p class="section-desc">Conheça os livros usados na missa, para que servem e como o coroinha os manuseia.</p>
+
+  <div class="book-list">
+
+    <div class="book-card">
+      <div class="book-icon">📕</div>
+      <div class="book-content">
+        <div class="book-name">Missal Romano</div>
+        <span class="book-latin">Missale Romanum</span>
+        <p class="book-desc">O livro principal da missa. Contém todas as orações do celebrante: coleta, prefácio, Oração Eucarística, oração pós-comunhão e as variações para cada dia do ano.</p>
+        <p class="book-tip">→ O coroinha segura o missal para o padre nas orações nas cadeiras ou no altar, na altura certa para ele ler, com a lombada voltada ao celebrante.</p>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-icon">📗</div>
+      <div class="book-content">
+        <div class="book-name">Lecionário</div>
+        <span class="book-latin">Lectionarium</span>
+        <p class="book-desc">Livro das leituras bíblicas: 1.ª leitura (Antigo Testamento ou Atos), Salmo Responsorial, 2.ª leitura (cartas apostólicas) e o Evangelho. Organizado em ciclos A, B e C (renova a cada 3 anos).</p>
+        <p class="book-tip">→ Fica no ambão (estante de leitura). Não é levado ao altar. Normalmente manuseado pelo leitor ou pelo diácono.</p>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-icon">📘</div>
+      <div class="book-content">
+        <div class="book-name">Evangeliário</div>
+        <span class="book-latin">Evangeliarium</span>
+        <p class="book-desc">Livro que contém apenas os quatro Evangelhos. Mais solene que o Lecionário: é carregado em procissão na entrada da missa, colocado sobre o altar e incensado antes da proclamação do Evangelho.</p>
+        <p class="book-tip">→ O coroinha pode acompanhar o evangeliário com velas acesas durante a procissão ao ambão. Segure a vela firme e caminhe devagar.</p>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-icon">🎵</div>
+      <div class="book-content">
+        <div class="book-name">Antifonário / Gradual</div>
+        <span class="book-latin">Antiphonarium</span>
+        <p class="book-desc">Livro com os cantos da missa: intróito, gradual, ofertório, antífona da comunhão e outros cantos litúrgicos. Usado pelo coro, cantor ou organista.</p>
+        <p class="book-tip">→ Não costuma ser manuseado pelo coroinha. Fica com o ministro da música.</p>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-icon">📙</div>
+      <div class="book-content">
+        <div class="book-name">Ritual Romano</div>
+        <span class="book-latin">Rituale Romanum</span>
+        <p class="book-desc">Livro dos ritos dos sacramentos e sacramentais: batismo, matrimônio, unção dos enfermos, exéquias, bênçãos e outros. Usado em celebrações fora da estrutura normal da missa.</p>
+        <p class="book-tip">→ O coroinha pode segurá-lo em batizados, bênçãos ou funerais a pedido do padre.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="tip">
+    <strong>Regra de ouro:</strong> Nunca coloque os livros sagrados no chão. Ao segurar o missal, mantenha os braços firmes, o livro na altura dos olhos do padre e fique quieto enquanto ele ora.
+  </div>
+</section>
+
+<!-- ══════════════════ MISSAS ══════════════════ -->
+<hr class="divider">
+<section id="missas">
+  <p class="section-eyebrow">Escala</p>
+  <h2 class="section-title">Dias de missa</h2>
+  <p class="section-desc">As missas da nossa paróquia acontecem nestas quatro ocasiões semanais. Anote e não falte!</p>
+
+  <div class="mass-week">
+    <div class="mass-day-card">
+      <div class="mass-day-icon">🕯️</div>
+      <div class="mass-day-name">Terça-feira</div>
+      <div class="mass-day-label">Missa diária</div>
+    </div>
+    <div class="mass-day-card">
+      <div class="mass-day-icon">🕯️</div>
+      <div class="mass-day-name">Quarta-feira</div>
+      <div class="mass-day-label">Missa diária</div>
+    </div>
+    <div class="mass-day-card">
+      <div class="mass-day-icon">🕯️</div>
+      <div class="mass-day-name">Quinta-feira</div>
+      <div class="mass-day-label">Missa diária</div>
+    </div>
+    <div class="mass-day-card featured">
+      <div class="mass-day-icon">⛪</div>
+      <div class="mass-day-name">Domingo</div>
+      <div class="mass-day-label">Missa principal</div>
+    </div>
+  </div>
+
+  <p class="section-eyebrow" style="margin-top:2rem;">Responsabilidades</p>
+  <h3 style="font-family:'Cinzel',serif; font-size:1.2rem; color:var(--burgundy-dark); margin-bottom:1rem; font-weight:600;">O que o coroinha deve fazer</h3>
+
+  <div class="duties-grid">
+    <div class="duty-card">
+      <div class="duty-num">1</div>
+      <div>
+        <div class="duty-title">Chegar cedo</div>
+        <div class="duty-desc">Pelo menos 15 minutos antes. Tempo de vestir a veste e organizar o altar com calma.</div>
+      </div>
+    </div>
+    <div class="duty-card">
+      <div class="duty-num">2</div>
+      <div>
+        <div class="duty-title">Acender as velas</div>
+        <div class="duty-desc">Verificar e acender as velas do altar antes do início da celebração.</div>
+      </div>
+    </div>
+    <div class="duty-card">
+      <div class="duty-num">3</div>
+      <div>
+        <div class="duty-title">Preparar o missal</div>
+        <div class="duty-desc">Abrir o Missal Romano na página correta do dia antes da procissão de entrada.</div>
+      </div>
+    </div>
+    <div class="duty-card">
+      <div class="duty-num">4</div>
+      <div>
+        <div class="duty-title">Galhetas de água e vinho</div>
+        <div class="duty-desc">Deixar as galhetas preenchidas e prontas para a Liturgia da Eucaristia.</div>
+      </div>
+    </div>
+    <div class="duty-card">
+      <div class="duty-num">5</div>
+      <div>
+        <div class="duty-title">Postura reverente</div>
+        <div class="duty-desc">Manter silêncio e compostura dentro da sacristia e durante toda a missa.</div>
+      </div>
+    </div>
+    <div class="duty-card">
+      <div class="duty-num">6</div>
+      <div>
+        <div class="duty-title">Apagar as velas</div>
+        <div class="duty-desc">Ao final da missa, apagar as velas e ajudar a guardar os objetos no lugar certo.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip">
+    <strong>Lembrete:</strong> Em caso de dúvida sobre o horário ou sobre a sua escala, fale diretamente com o coordenador dos coroinhas. Avisar com antecedência quando não puder comparecer é sinal de responsabilidade.
+  </div>
+</section>
+
+<footer>
+  <p>Feito com <span>♥</span> para os Servidores do Altar &nbsp;·&nbsp; <span>✝</span> Ad Majorem Dei Gloriam</p>
+</footer>
+
+</body>
+</html>
